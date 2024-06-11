@@ -1,0 +1,4 @@
+<template>
+  <Menu />
+  <NuxtPage />
+</template>
