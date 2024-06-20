@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import type {BoardModel} from "~/types/boardmodel";
+
+import type {BoardModel} from "~/types/board-model";
 
 defineProps<{ boardModel: BoardModel }>()
 </script>
 
 <template>
-  {{ boardModel.name }} - {{ boardModel.boardCount }} in stock
+  <div>
+    {{ boardModel.name }}
+    <br/>
+    {{ boardModel.description }}
+    <br/>
+    <img :src="boardModel.photoUrl">
+  </div>
 </template>
 
 <style scoped>

@@ -1,7 +1,11 @@
-import {BoardModel} from "~/types/boardmodel";
+import {BoardModel} from "~/types/board-model";
 
 export async function getAllBoardModels(): Promise<BoardModel[]> {
     const keys = await useStorage().getKeys("boardmodel")
-    let results = await useStorage().getItems<BoardModel>(keys)
-    return results.map(result => result.value)
+    return (await useStorage().getItems<BoardModel>(keys)).map(item => item.value)
+}
+
+export async function getBoardModelById(id: string): Promise<BoardModel | null> {
+    const key = `boardmodel:${id}`
+    return await useStorage().getItem<BoardModel>(key)
 }

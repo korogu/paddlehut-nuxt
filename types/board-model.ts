@@ -1,5 +1,7 @@
 export interface BoardModel {
     id: string,
     name: string,
-    boardCount: number
+    description: string,
+    photoUrl: string,
+    boardCount: number,
 }
