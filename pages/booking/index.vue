@@ -18,9 +18,9 @@ const checkOut = async (bookingId: string) => {
 </script>
 
 <template>
-  <h1>Booking</h1>
+  <h1 class="page-title">Booking</h1>
   <NuxtLink to="/booking/new">
-    <button>Create new</button>
+    <PrimeButton label="Create new"/>
   </NuxtLink>
   <table>
     <thead>

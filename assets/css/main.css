@@ -1,0 +1,32 @@
+@layer normalize, primevue;
+
+@import 'modern-normalize/modern-normalize.css' layer(normalize);
+@import "primeicons/primeicons.css";
+
+:root {
+    font-family: Tahoma, Helvetica, Arial;
+    font-size: 14px;
+    color: #262626;
+    --brand-color-filter: brightness(0) saturate(100%) invert(10%) sepia(9%) saturate(0%) hue-rotate(238deg) brightness(100%) contrast(88%);;
+    --default-spacing: 0.7rem;
+    --default-radius: 10px;
+    --default-border-color: #e2e2e2;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1.page-title {
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    margin: var(--default-spacing);
+}

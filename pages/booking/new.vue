@@ -53,7 +53,7 @@ function getRawInterval() {
 </script>
 
 <template>
-  <h1>New booking</h1>
+  <h1 class="page-title">New booking</h1>
   <form>
     <label for="start-date">Date de début</label>
     <input id="start-date" v-model="startDate">
