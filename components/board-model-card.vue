@@ -13,6 +13,7 @@ defineProps<{ boardModel: BoardModel }>()
       <p class="board-description">
         {{ boardModel.description }}
       </p>
+      <slot></slot>
     </div>
   </div>
 </template>

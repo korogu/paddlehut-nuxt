@@ -14,12 +14,12 @@
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/booking">
+          <NuxtLink to="/bookings">
             <PrimeButton label="Bookings" link/>
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/booking/new">
+          <NuxtLink to="/bookings/new">
             <PrimeButton label="New booking"/>
           </NuxtLink>
         </li>

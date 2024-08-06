@@ -21,7 +21,7 @@ export default defineNitroPlugin(async (nitroApp) => {
         {
             key: "boardmodel:HB",
             value: {
-                ...heavenBoard, description: "Confortable board, for a stable experience",
+                ...heavenBoard, description: "Comfortable board, for a stable experience",
                 photoUrl: "/img/heavenboard.png", boardCount: 2
             }
         },

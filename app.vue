@@ -1,6 +1,7 @@
 <template>
   <Menu/>
   <section class="main-content">
+    <PrimeToast position="top-center" group="global-notifications"/>
     <NuxtPage/>
   </section>
 </template>

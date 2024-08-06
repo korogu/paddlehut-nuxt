@@ -2,7 +2,13 @@
 import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
-    devtools: {enabled: true},
+    devtools: {
+      enabled: true,
+
+      timeline: {
+        enabled: true
+      }
+    },
     css: ['primeicons/primeicons.css', '~/assets/css/main.css'],
     imports: {
         dirs: ['types/*.ts'],

@@ -11,6 +11,7 @@
     --default-spacing: 0.7rem;
     --default-radius: 10px;
     --default-border-color: #e2e2e2;
+    --default-error-color: #f87171;
 }
 
 ul {
@@ -28,5 +29,12 @@ h1.page-title {
     width: 100%;
     text-align: center;
     font-size: 3em;
-    margin: var(--default-spacing);
+}
+
+h1, h2 {
+    margin: calc(var(--default-spacing) * 2) 0;
+}
+
+h2 {
+    font-weight: 400;
 }
