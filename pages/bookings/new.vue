@@ -6,7 +6,7 @@ import {addHours} from "date-fns/addHours";
 import type {BookingRequest} from "~/types/booking";
 import {date, object, string} from "yup";
 import {interval} from "date-fns/interval";
-import {useToast} from "primevue/usetoast";
+import {useErrorHandlers} from "~/composables/error-handlers";
 
 const router = useRouter()
 const defaultStartTime = startOfHour(new Date())
@@ -33,7 +33,7 @@ const modelValidation = object({
 const validationErrors = ref<any>({})
 const displayValidationErrors = ref<boolean>(false)
 const availabilitiesLoading = ref(false)
-const toast = useToast();
+const errorHandlers = useErrorHandlers()
 
 const displayAvailabilities = async () => {
   resetChoices()
@@ -43,19 +43,9 @@ const displayAvailabilities = async () => {
     const {start: startTime, end: endTime} = getTimeRange()
     availabilitiesLoading.value = true
 
-    await $fetch<BoardModel[]>(`/api/boardmodels?available&startTime=${startTime.toISOString()}&endTime=${endTime.toISOString()}`)
+    await $fetch<BoardModel[]>(`/api/boardmodels?available&startTime=${startTime.toISOString()}&endTime=${endTime.toISOString()}`, {onResponseError: errorHandlers.xhrDefaultErrorHandler})
         .then(value => {
           availableModels.value = value
-        })
-        .catch(reason => {
-          // Display error message to user
-          toast.add({
-            severity: 'error',
-            summary: 'Technical error',
-            detail: 'An unexpected error occurs. Please try again.',
-            group: 'global-notifications',
-            life: 3000
-          })
         })
         .finally(() => {
           availabilitiesLoading.value = false
@@ -202,7 +192,8 @@ section {
 }
 
 #check-availabilities-button {
-  align-self: flex-end;
+  align-self: end;
+  grid-column: auto / span 2;
 }
 
 #board-model-selection {

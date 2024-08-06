@@ -2,8 +2,10 @@
 import type {Booking} from "~/types/booking";
 import {interval} from "date-fns/interval";
 import {intervalToDuration} from "date-fns/intervalToDuration";
+import {useErrorHandlers} from "~/composables/error-handlers";
 
-const {data: bookings} = await useFetch<Booking[]>('/api/bookings')
+const errorHandlers = useErrorHandlers()
+const {data: bookings} = await useFetch<Booking[]>('/api/bookings', {onResponseError: errorHandlers.xhrDefaultErrorHandler})
 const bookingIdToCheckout = ref()
 
 const bookingLines = computed(() => {
@@ -23,7 +25,10 @@ const cancelCheckout = () => {
 }
 
 const checkout = async (bookingId: string) => {
-  await $fetch<void>(`/api/bookings/${bookingId}`, {method: 'DELETE'})
+  await $fetch<void>(`/api/bookings/${bookingId}`, {
+    method: 'DELETE',
+    onResponseError: errorHandlers.xhrDefaultErrorHandler
+  })
   await refreshNuxtData()
 }
 </script>

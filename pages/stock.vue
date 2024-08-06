@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type {Board} from "~/types/board";
+import {useErrorHandlers} from "~/composables/error-handlers";
 
-const {data: boards} = await useFetch<Board[]>('/api/boards')
+const errorHandlers = useErrorHandlers()
+const {data: boards} = await useFetch<Board[]>('/api/boards', {onResponseError: errorHandlers.xhrDefaultErrorHandler})
 const {data: boardModels} = await useFetch<BoardModel[]>('/api/boardmodels')
 
 </script>
