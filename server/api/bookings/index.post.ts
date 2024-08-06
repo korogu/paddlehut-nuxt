@@ -1,4 +1,4 @@
-import {BookingRequest} from "~/types/booking";
+import {BookingRequest} from "~/models/booking";
 import {registerNewBooking} from "~/server/core/booking-register";
 
 export default defineEventHandler(async (event) => {

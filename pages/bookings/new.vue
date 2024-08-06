@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import type {BoardModel} from "~/types/board-model";
+import type {BoardModel} from "~/models/board-model";
 import {startOfHour} from "date-fns/startOfHour";
 import {addHours} from "date-fns/addHours";
-import type {BookingRequest} from "~/types/booking";
+import type {BookingRequest} from "~/models/booking";
 import {date, object, string} from "yup";
 import {interval} from "date-fns/interval";
 import {useErrorHandlers} from "~/composables/error-handlers";

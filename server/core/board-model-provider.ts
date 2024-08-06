@@ -1,4 +1,4 @@
-import {BoardModel} from "~/types/board-model";
+import {BoardModel} from "~/models/board-model";
 import {getAllBoardModels} from "~/server/repository/board-model.repository";
 import {getAvailableModels} from "~/server/core/booking-register";
 

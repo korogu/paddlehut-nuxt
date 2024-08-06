@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import type {BoardModel} from "~/types/board-model";
+import type {BoardModel} from "~/models/board-model";
 
 defineProps<{ boardModel: BoardModel }>()
 </script>

@@ -1,4 +1,4 @@
-import {Board} from "~/types/board";
+import {Board} from "~/models/board";
 
 const STORAGE_KEY = "board";
 

@@ -3,18 +3,19 @@ import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
     devtools: {
-      enabled: true,
+        enabled: true,
 
-      timeline: {
-        enabled: true
-      }
+        timeline: {
+            enabled: true
+        }
     },
     css: ['primeicons/primeicons.css', '~/assets/css/main.css'],
     imports: {
         dirs: ['types/*.ts'],
     },
     modules: [
-        '@primevue/nuxt-module'
+        '@primevue/nuxt-module',
+        '@nuxt/test-utils/module'
     ],
     primevue: {
         usePrimeVue: true,

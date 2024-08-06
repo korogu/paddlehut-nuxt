@@ -1,7 +1,7 @@
 import {interval} from "date-fns/interval";
 import {isWithinInterval} from "date-fns/isWithinInterval";
 import {isEqual} from "date-fns/isEqual";
-import type {TimeRange} from "~/types/time";
+import type {TimeRange} from "~/models/time";
 
 export interface Booking {
     id: string,

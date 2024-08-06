@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Board} from "~/types/board";
+import type {Board} from "~/models/board";
 import {useErrorHandlers} from "~/composables/error-handlers";
 
 const errorHandlers = useErrorHandlers()

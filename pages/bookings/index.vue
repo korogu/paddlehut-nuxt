@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Booking} from "~/types/booking";
+import type {Booking} from "~/models/booking";
 import {interval} from "date-fns/interval";
 import {intervalToDuration} from "date-fns/intervalToDuration";
 import {useErrorHandlers} from "~/composables/error-handlers";

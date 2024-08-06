@@ -1,4 +1,4 @@
-import {BoardModel} from "~/types/board-model";
+import {BoardModel} from "~/models/board-model";
 
 export async function getAllBoardModels(): Promise<BoardModel[]> {
     const keys = await useStorage().getKeys("boardmodel")

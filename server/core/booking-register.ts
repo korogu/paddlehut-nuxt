@@ -1,4 +1,4 @@
-import {Booking, BookingRequest, isBookingWithin} from "~/types/booking";
+import {Booking, BookingRequest, isBookingWithin} from "~/models/booking";
 import {
     addBooking,
     getAllBookings,
@@ -7,10 +7,10 @@ import {
     removeBooking
 } from "~/server/repository/booking.repository";
 import {getAllBoardModels, getBoardModelById} from "~/server/repository/board-model.repository";
-import {Board} from "~/types/board";
-import {BoardModel} from "~/types/board-model";
+import {Board} from "~/models/board";
+import {BoardModel} from "~/models/board-model";
 import {getBoardsByModel} from "~/server/repository/board.repository";
-import type {TimeRange} from "~/types/time";
+import type {TimeRange} from "~/models/time";
 
 
 export async function registerNewBooking(bookingRequest: BookingRequest): Promise<Booking> {

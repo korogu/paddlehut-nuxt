@@ -1,7 +1,7 @@
-import {Board} from "~/types/board";
-import {Booking} from "~/types/booking";
+import {Board} from "~/models/board";
+import {Booking} from "~/models/booking";
 import {randomUUID} from "uncrypto";
-import {BoardModel} from "~/types/board-model";
+import {BoardModel} from "~/models/board-model";
 import {setHours} from "date-fns/setHours";
 import {startOfHour} from "date-fns/startOfHour";
 

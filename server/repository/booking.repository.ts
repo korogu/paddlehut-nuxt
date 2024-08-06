@@ -1,4 +1,4 @@
-import {Booking} from "~/types/booking";
+import {Booking} from "~/models/booking";
 import {randomUUID} from "uncrypto";
 import {decrementBookingCount, incrementBookingCount} from "~/server/repository/board.repository";
 
