@@ -124,7 +124,7 @@ interface DurationChoice {
 
 <template>
   <h1 class="page-title">New booking</h1>
-  <section id="time-range-selection" class="form-section">
+  <section id="time-range-selection" class="form-grid">
     <div class="form-field">
       <label for="start-time"
              :class="{'validation-error': displayValidationErrors && validationErrors.startTimeRequired}">Start
@@ -150,21 +150,23 @@ interface DurationChoice {
 
   <section id="board-model-selection" v-if="availableModels">
     <span>Model</span>
-    <span v-if="availableModels.length === 0">No model available. Try another start time.</span>
-    <ul id="available-models" v-if="!model.boardModel">
-      <li v-for="boardModel in availableModels">
-        <board-model-card :boardModel="boardModel">
+    <span v-if="availableModels.length === 0">No model available. Try another time slot.</span>
+    <ul id="available-models" v-if="!model.boardModel" class="form-grid">
+      <li v-for="boardModel in availableModels" class="available-model">
+        <board-model-card :boardModel="boardModel" class="board-model-card">
           <div class="choose-model-button">
             <PrimeButton @click="chooseModel(boardModel)">Choose</PrimeButton>
           </div>
         </board-model-card>
       </li>
     </ul>
-    <board-model-card v-else :boardModel="model.boardModel"/>
+    <div v-else class="form-grid">
+      <board-model-card :boardModel="model.boardModel" id="selected-model-card"/>
+    </div>
   </section>
 
-  <section id="booking-finalization" class="form-section" v-if="model.boardModel">
-    <div class="form-field">
+  <section id="booking-finalization" class="form-grid" v-if="model.boardModel">
+    <div id="customer-name-field" class="form-field">
       <label for="customer-name"
              :class="{'validation-error': displayValidationErrors && validationErrors.customerNameRequired}">Customer
         name</label>
@@ -175,23 +177,22 @@ interface DurationChoice {
                       :invalid="displayValidationErrors && validationErrors.customerNameRequired"/>
       <span v-if="displayValidationErrors && validationErrors.customerNameRequired" class="validation-error">Customer is mandatory</span>
     </div>
-    <PrimeButton @click.prevent="createBooking()">Register this booking</PrimeButton>
+    <PrimeButton v-if="model.boardModel" @click.prevent="createBooking()" id="create-booking-button">Register this
+      booking
+    </PrimeButton>
   </section>
 </template>
 
 <style scoped>
 section {
   margin-top: var(--default-spacing);
-  display: flex;
-  flex-direction: column;
-  gap: var(--default-spacing);
 }
 
-.form-section {
-  display: flex;
-  flex-direction: row;
-  gap: var(--default-spacing);
-  align-items: flex-end;
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-column-gap: var(--default-spacing);
+  grid-row-gap: var(--default-spacing);
 }
 
 .form-field {
@@ -204,10 +205,23 @@ section {
   align-self: flex-end;
 }
 
-#available-models {
+#board-model-selection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: var(--default-spacing);
+}
+
+.available-model {
+  grid-column: auto / span 2;
+}
+
+.board-model-card {
+  width: 100%;
+}
+
+#selected-model-card {
+  grid-column: 1 / span 2;
+  width: 100%;
 }
 
 .choose-model-button {
@@ -222,9 +236,13 @@ section {
   color: var(--default-error-color);
 }
 
-#booking-finalization {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+#customer-name-field {
+  grid-column: 1 / 3;
 }
+
+#create-booking-button {
+  grid-row: 2 / 3;
+  grid-column: 1 / 3;
+}
+
 </style>

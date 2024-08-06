@@ -33,6 +33,7 @@ defineProps<{ boardModel: BoardModel }>()
 .board-identity {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .board-name {
