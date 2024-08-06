@@ -36,7 +36,8 @@ const checkout = async (bookingId: string) => {
 <template>
   <h1 class="page-title">Bookings</h1>
 
-  <PrimeDataTable v-if="bookingLines && bookingLines?.length > 0" :value="bookingLines">
+  <PrimeDataTable v-if="bookingLines && bookingLines?.length > 0" :value="bookingLines"
+                  :tableProps="{'data-testid': 'bookings-table'}">
     <PrimeColumn header="Start at">
       <template #body="slotProps">
         {{ formatToShortDateTime(slotProps.data.startTime) }}

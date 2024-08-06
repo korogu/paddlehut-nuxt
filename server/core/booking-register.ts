@@ -36,15 +36,6 @@ export async function registerNewBooking(bookingRequest: BookingRequest): Promis
     })
 }
 
-async function getAvailableBoards(model: BoardModel, timeRange: TimeRange): Promise<Board[]> {
-    const boards = await getBoardsByModel(model.id)
-    const bookedBoardIds = (await getBookingsByModel(model.id))
-        .filter(booking => isBookingWithin(booking, timeRange))
-        .map(booking => booking.board.id)
-
-    return boards.filter(board => bookedBoardIds.indexOf(board.id) === -1)
-}
-
 export async function getAvailableModels(timeRange: TimeRange) {
     const allBookings = await getAllBookings()
     const bookingsByModel = groupBookingsByModelId(allBookings.filter(item => isBookingWithin(item, timeRange)))
@@ -56,6 +47,25 @@ export async function getAvailableModels(timeRange: TimeRange) {
     }).filter(model => model.boardCount > 0)
 }
 
+export async function checkOut(bookingId: string) {
+    const booking = await getBookingById(bookingId)
+
+    if (!booking) {
+        throw createError({statusCode: 400, statusMessage: "Unknown booking"})
+    }
+
+    return removeBooking(booking)
+}
+
+async function getAvailableBoards(model: BoardModel, timeRange: TimeRange): Promise<Board[]> {
+    const boards = await getBoardsByModel(model.id)
+    const bookedBoardIds = (await getBookingsByModel(model.id))
+        .filter(booking => isBookingWithin(booking, timeRange))
+        .map(booking => booking.board.id)
+
+    return boards.filter(board => bookedBoardIds.indexOf(board.id) === -1)
+}
+
 function groupBookingsByModelId(booking: Booking[]): Map<string, Booking[]> {
     return booking.reduce<Map<string, Booking[]>>((modelMap, currentBooking) => {
         const modelId = currentBooking.board.model.id
@@ -65,14 +75,4 @@ function groupBookingsByModelId(booking: Booking[]): Map<string, Booking[]> {
 
         return modelMap
     }, new Map<string, Booking[]>())
-}
-
-export async function checkOut(bookingId: string) {
-    const booking = await getBookingById(bookingId)
-
-    if (!booking) {
-        throw createError({statusCode: 400, statusMessage: "Unknown booking"})
-    }
-
-    return removeBooking(booking)
 }
